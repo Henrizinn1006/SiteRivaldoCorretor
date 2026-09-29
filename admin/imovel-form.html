@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="same-origin">
+  <meta name="theme-color" content="#3A2F28">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Rivaldo">
+  <title>Imóvel — Painel Rivaldo</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="is-booting">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+
+  <!-- Exibida enquanto a sessão é confirmada no servidor -->
+  <div class="boot" aria-live="polite">
+    <img class="brand-logo brand-logo--boot" src="../assets/images/logo-assinatura.webp" alt="" width="931" height="140" decoding="async">
+    <span class="sr-only">Carregando painel…</span>
+  </div>
+
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Navegação principal"></aside>
+    <div class="scrim" id="scrim" aria-hidden="true"></div>
+
+    <div class="main">
+      <header class="topbar" id="topbar"></header>
+
+      <main class="content" id="content" tabindex="-1">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow"><a href="imoveis.html">← Imóveis</a></p>
+            <h1 class="page-title" id="pageTitle">Novo imóvel</h1>
+            <p class="page-subtitle" id="pageSubtitle">Preencha no seu ritmo: salve como rascunho e publique quando estiver pronto.</p>
+          </div>
+          <a class="btn btn--ghost" id="viewSite" href="#" target="_blank" rel="noopener" hidden><svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg><span>Visualizar no site</span></a>
+        </div>
+
+        <div class="form-layout">
+          <nav class="stepper" id="stepper" aria-label="Etapas do cadastro"></nav>
+
+          <form class="card form-card" id="propertyForm" novalidate>
+
+            <!-- 1. Informações básicas -->
+            <section class="form-section is-active" aria-labelledby="t-basic">
+              <header class="form-section__head">
+                <h2 class="form-section__title" id="t-basic" tabindex="-1">Informações básicas</h2>
+                <p class="form-section__text">Como o imóvel será apresentado no site.</p>
+              </header>
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="f-title">Título do anúncio<span class="req">*</span></label>
+                  <input class="input" id="f-title" name="title" maxlength="160" required placeholder="Ex.: Apartamento alto padrão nos Jardins">
+                </div>
+                <!-- O site trabalha só com venda: negociação fica fixa em "Venda" (campo oculto) -->
+                <div class="form-field span-3" hidden>
+                  <span class="form-label" id="l-transaction">Negociação<span class="req">*</span></span>
+                  <div class="segmented" role="radiogroup" aria-labelledby="l-transaction">
+                    <label><input type="radio" name="transaction_type" value="venda" checked><span>Venda</span></label>
+                    <label><input type="radio" name="transaction_type" value="aluguel"><span>Aluguel</span></label>
+                  </div>
+                </div>
+                <div class="form-field">
+                  <label for="f-type">Tipo do imóvel<span class="req">*</span></label>
+                  <select class="select" id="f-type" name="property_type_id"></select>
+                </div>
+                <div class="form-field">
+                  <div class="label-row">
+                    <label for="f-description">Descrição</label>
+                    <span class="counter-text" id="descCounter">0 / 20.000</span>
+                  </div>
+                  <textarea class="textarea" id="f-description" name="description" maxlength="20000" rows="8"
+                            placeholder="Destaque diferenciais, acabamento, vista, lazer do condomínio…"></textarea>
+                </div>
+                <div class="form-field span-4">
+                  <label for="f-slug">Endereço da página (URL)</label>
+                  <input class="input" id="f-slug" name="slug" maxlength="170" autocapitalize="none" spellcheck="false" placeholder="gerado a partir do título">
+                  <p class="form-hint">Usado em links como /imovel/<b>endereco-da-pagina</b>. Gerado automaticamente.</p>
+                </div>
+                <div class="form-field span-2">
+                  <label for="codeDisplay">Código</label>
+                  <input class="input" id="codeDisplay" readonly value="Gerado ao salvar" tabindex="-1">
+                </div>
+              </div>
+            </section>
+
+            <!-- 2. Localização -->
+            <section class="form-section" aria-labelledby="t-location">
+              <header class="form-section__head">
+                <h2 class="form-section__title" id="t-location" tabindex="-1">Localização</h2>
+                <p class="form-section__text">Digite o CEP para preencher o endereço automaticamente.</p>
+              </header>
+              <div class="form-grid">
+                <div class="form-field span-3">
+                  <label for="f-zip">CEP</label>
+                  <div class="field-inline">
+                    <input class="input" id="f-zip" name="zip_code" inputmode="numeric" maxlength="9" placeholder="00000-000" autocomplete="off">
+                    <button class="btn btn--outline" type="button" id="cepBtn" aria-label="Buscar endereço pelo CEP"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg></button>
+                  </div>
+                </div>
+                <div class="form-field span-3"></div>
+                <div class="form-field span-4">
+                  <label for="f-city">Cidade<span class="req">*</span></label>
+                  <select class="select" id="f-city" name="city_id"></select>
+                  <p class="form-hint">Não encontrou? Cadastre em <a href="localidades.html" target="_blank">Bairros / localidades</a>.</p>
+                </div>
+                <div class="form-field span-2">
+                  <label for="stateDisplay">UF</label>
+                  <input class="input" id="stateDisplay" readonly tabindex="-1">
+                </div>
+                <div class="form-field span-4">
+                  <label for="f-neighborhood">Bairro<span class="req">*</span></label>
+                  <input class="input" id="f-neighborhood" name="neighborhood_name" list="neighborhoodList" maxlength="120" autocomplete="off">
+                  <datalist id="neighborhoodList"></datalist>
+                  <p class="form-hint">Escolha um da lista ou digite um novo — ele é cadastrado automaticamente.</p>
+                </div>
+                <div class="form-field span-2">
+                  <label for="f-zone">Zona</label>
+                  <select class="select" id="f-zone" name="zone">
+                    <option value="">Sem zona</option>
+                  </select>
+                  <p class="form-hint">Usada no filtro “Zona” do site. Vale para o bairro todo.</p>
+                </div>
+                <div class="form-field span-4">
+                  <label for="f-address">Endereço</label>
+                  <input class="input" id="f-address" name="address" maxlength="190" placeholder="Rua, avenida…">
+                </div>
+                <div class="form-field span-2">
+                  <label for="f-number">Número</label>
+                  <input class="input" id="f-number" name="number" maxlength="20">
+                </div>
+                <div class="form-field">
+                  <label for="f-complement">Complemento</label>
+                  <input class="input" id="f-complement" name="complement" maxlength="120" placeholder="Apto, bloco, torre…">
+                </div>
+                <div class="form-field span-3">
+                  <label for="f-lat">Latitude <span class="subtle">(opcional)</span></label>
+                  <input class="input" id="f-lat" name="latitude" inputmode="decimal" placeholder="-23,5613">
+                </div>
+                <div class="form-field span-3">
+                  <label for="f-lng">Longitude <span class="subtle">(opcional)</span></label>
+                  <input class="input" id="f-lng" name="longitude" inputmode="decimal" placeholder="-46,6565">
+                </div>
+                <div class="form-field">
+                  <label class="switch">
+                    <input type="checkbox" name="show_address">
+                    <span class="switch__track"></span>
+                    <span class="switch__label">Mostrar endereço completo no site
+                      <span class="switch__text">Desligado: o site mostra apenas bairro e cidade (recomendado para segurança do proprietário).</span></span>
+                  </label>
+                </div>
+              </div>
+            </section>
+
+            <!-- 3. Valores -->
+            <section class="form-section" aria-labelledby="t-values">
+              <header class="form-section__head">
+                <h2 class="form-section__title" id="t-values" tabindex="-1">Valores</h2>
+                <p class="form-section__text">Preço de venda, condomínio e IPTU.</p>
+              </header>
+              <div class="form-grid">
+
+            <div class="form-field span-3">
+              <label for="f-price">Preço<span class="req">*</span></label>
+              <div class="input-prefix"><span>R$</span><input class="input" id="f-price" name="price" placeholder="0,00"></div>
+              <p class="form-hint">Valor total de venda.</p>
+            </div>
+
+            <div class="form-field span-3 field-switch-top">
+              <label class="switch">
+                <input type="checkbox" name="price_from">
+                <span class="switch__track"></span>
+                <span class="switch__label">Exibir como “A partir de”
+                  <span class="switch__text">Para lançamentos ou imóveis com várias plantas: o site mostra “A partir de R$ …”.</span></span>
+              </label>
+            </div>
+
+            <div class="form-field span-3">
+              <label for="f-old_price">Preço anterior</label>
+              <div class="input-prefix"><span>R$</span><input class="input" id="f-old_price" name="old_price" placeholder="0,00"></div>
+              <p class="form-hint">Opcional. Exibido riscado para indicar redução.</p>
+            </div>
+
+            <div class="form-field span-3">
+              <label for="f-condominium_fee">Condomínio (mensal)</label>
+              <div class="input-prefix"><span>R$</span><input class="input" id="f-condominium_fee" name="condominium_fee" placeholder="0,00"></div>
+
+            </div>
+
+            <div class="form-field span-3">
+              <label for="f-property_tax">IPTU (anual)</label>
+              <div class="input-prefix"><span>R$</span><input class="input" id="f-property_tax" name="property_tax" placeholder="0,00"></div>
+
+            </div>
+              </div>
+            </section>
+
+            <!-- 4. Características -->
+            <section class="form-section" aria-labelledby="t-details">
+              <header class="form-section__head">
+                <h2 class="form-section__title" id="t-details" tabindex="-1">Características</h2>
+                <p class="form-section__text">Metragem, cômodos e diferenciais.</p>
+              </header>
+              <div class="form-grid">
+                <div class="form-field span-3 keep-half">
+                  <label for="f-total">Área total</label>
+                  <div class="input-suffix"><input class="input" id="f-total" name="total_area" inputmode="decimal" placeholder="0"><span>m²</span></div>
+                </div>
+                <div class="form-field span-3 keep-half">
+                  <label for="f-usable">Área útil / construída</label>
+                  <div class="input-suffix"><input class="input" id="f-usable" name="usable_area" inputmode="decimal" placeholder="0"><span>m²</span></div>
+                </div>
+
+            <div class="form-field span-3 keep-half">
+              <label for="f-bedrooms">Quartos</label>
+              <div class="counter">
+                <button type="button" data-delta="-1" aria-label="Diminuir quartos">−</button>
+                <input id="f-bedrooms" name="bedrooms" type="number" min="0" max="99" inputmode="numeric" value="0">
+                <button type="button" data-delta="1" aria-label="Aumentar quartos">+</button>
+              </div>
+            </div>
+
+            <div class="form-field span-3 keep-half">
+              <label for="f-suites">Suítes</label>
+              <div class="counter">
+                <button type="button" data-delta="-1" aria-label="Diminuir suítes">−</button>
+                <input id="f-suites" name="suites" type="number" min="0" max="99" inputmode="numeric" value="0">
+                <button type="button" data-delta="1" aria-label="Aumentar suítes">+</button>
+              </div>
+            </div>
+
+            <div class="form-field span-3 keep-half">
+              <label for="f-bathrooms">Banheiros</label>
+              <div class="counter">
+                <button type="button" data-delta="-1" aria-label="Diminuir banheiros">−</button>
+                <input id="f-bathrooms" name="bathrooms" type="number" min="0" max="99" inputmode="numeric" value="0">
+                <button type="button" data-delta="1" aria-label="Aumentar banheiros">+</button>
+              </div>
+            </div>
+
+            <div class="form-field span-3 keep-half">
+              <label for="f-parking_spaces">Vagas</label>
+              <div class="counter">
+                <button type="button" data-delta="-1" aria-label="Diminuir vagas">−</button>
+                <input id="f-parking_spaces" name="parking_spaces" type="number" min="0" max="99" inputmode="numeric" value="0">
+                <button type="button" data-delta="1" aria-label="Aumentar vagas">+</button>
+              </div>
+            </div>
+                <div class="form-field">
+                  <span class="form-label">Diferenciais do imóvel</span>
+                  <div class="check-grid" id="featureGrid"></div>
+                </div>
+              </div>
+            </section>
+
+            <!-- 5. Fotografias -->
+            <section class="form-section" aria-labelledby="t-photos">
+              <header class="form-section__head">
+                <h2 class="form-section__title" id="t-photos" tabindex="-1">Fotografias</h2>
+                <p class="form-section__text">As fotos são otimizadas automaticamente. Use fotos na horizontal e bem iluminadas.</p>
+              </header>
+              <p class="notice notice--info" id="galleryLocked">Ao enviar a primeira foto, o imóvel é salvo como rascunho automaticamente.</p>
+              <div id="gallery"></div>
+            </section>
+
+            <!-- 6. Publicação -->
+            <section class="form-section" aria-labelledby="t-publish">
+              <header class="form-section__head">
+                <h2 class="form-section__title" id="t-publish" tabindex="-1">Publicação</h2>
+                <p class="form-section__text" id="publishState"></p>
+              </header>
+              <div class="form-grid">
+                <div class="form-field span-3" id="statusField">
+                  <label for="f-status">Status no site</label>
+                  <select class="select" id="f-status" name="status">
+                    <option value="disponivel">Disponível</option>
+                    <option value="reservado">Reservado</option>
+                    <option value="vendido">Vendido</option>
+                    <option value="alugado">Alugado</option>
+                    <option value="indisponivel">Indisponível</option>
+                  </select>
+                  <p class="form-hint">Vendidos e alugados saem das buscas do site automaticamente.</p>
+                </div>
+                <div class="form-field">
+                  <label class="switch">
+                    <input type="checkbox" name="featured">
+                    <span class="switch__track"></span>
+                    <span class="switch__label">Exibir como destaque
+                      <span class="switch__text">Aparece automaticamente no carrossel “Imóveis em destaque” da Home (quando publicado e disponível).</span></span>
+                  </label>
+                </div>
+                <div class="form-field">
+                  <span class="form-label">Pronto para publicar?</span>
+                  <ul class="checklist" id="publishChecklist"></ul>
+                </div>
+                <div class="form-field" id="unpublishWrap" hidden>
+                  <button class="btn btn--outline" type="button" id="unpublishBtn"><svg class="icon" aria-hidden="true"><use href="#i-eyeOff"/></svg><span>Despublicar (voltar para rascunho)</span></button>
+                </div>
+              </div>
+            </section>
+
+            <div class="form-actions">
+              <div class="form-actions__nav">
+                <button class="btn btn--ghost btn--sm" type="button" id="prevStep"><svg class="icon" aria-hidden="true"><use href="#i-chevronLeft"/></svg><span>Anterior</span></button>
+                <span class="save-status" id="saveStatus" aria-live="polite"></span>
+                <button class="btn btn--ghost btn--sm" type="button" id="nextStep"><span>Próxima</span><svg class="icon" aria-hidden="true"><use href="#i-chevronRight"/></svg></button>
+              </div>
+              <div class="form-actions__main">
+                <button class="btn btn--outline" type="button" id="saveDraft"><svg class="icon" aria-hidden="true"><use href="#i-save"/></svg><span>Salvar rascunho</span></button>
+                <button class="btn btn--gold" type="submit" id="publishBtn"><svg class="icon" aria-hidden="true"><use href="#i-send"/></svg><span>Publicar imóvel</span></button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="js/pages/property-form.js"></script>
+</body>
+</html>

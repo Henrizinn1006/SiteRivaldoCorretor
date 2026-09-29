@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="same-origin">
+  <meta name="theme-color" content="#3A2F28">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Rivaldo">
+  <title>Características — Painel Rivaldo</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="is-booting" data-catalog="features">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+
+  <!-- Exibida enquanto a sessão é confirmada no servidor -->
+  <div class="boot" aria-live="polite">
+    <img class="brand-logo brand-logo--boot" src="../assets/images/logo-assinatura.webp" alt="" width="931" height="140" decoding="async">
+    <span class="sr-only">Carregando painel…</span>
+  </div>
+
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Navegação principal"></aside>
+    <div class="scrim" id="scrim" aria-hidden="true"></div>
+
+    <div class="main">
+      <header class="topbar" id="topbar"></header>
+
+      <main class="content" id="content" tabindex="-1">
+        <div class="page-head">
+          <div>
+            <h1 class="page-title">Características</h1>
+            <p class="page-subtitle">Diferenciais que você marca em cada imóvel (piscina, academia…).</p>
+          </div>
+          <button class="btn btn--gold" type="button" data-new><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg><span>Nova característica</span></button>
+        </div>
+
+        <section class="card" aria-label="Características">
+          <div id="list" aria-busy="true"><div class="card__body"><span class="skeleton" style="height:18px;width:40%"></span></div></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="js/pages/catalog.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "name": "Painel Rivaldo Duarte",
+  "short_name": "Rivaldo",
+  "description": "Painel administrativo para gerenciar imóveis, fotos e informações do site.",
+  "id": "./",
+  "start_url": "./index.html?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#F4EEE6",
+  "theme_color": "#3A2F28",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "categories": ["business", "productivity"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-full-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Adicionar imóvel",
+      "short_name": "Novo imóvel",
+      "url": "./imovel-form.html?source=pwa",
+      "icons": [{ "src": "icons/shortcut-add.png", "sizes": "96x96", "type": "image/png" }]
+    },
+    {
+      "name": "Imóveis",
+      "short_name": "Imóveis",
+      "url": "./imoveis.html?source=pwa",
+      "icons": [{ "src": "icons/shortcut-list.png", "sizes": "96x96", "type": "image/png" }]
+    }
+  ]
+}

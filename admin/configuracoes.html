@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="same-origin">
+  <meta name="theme-color" content="#3A2F28">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Rivaldo">
+  <title>Configurações do site — Painel Rivaldo</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="is-booting">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+
+  <!-- Exibida enquanto a sessão é confirmada no servidor -->
+  <div class="boot" aria-live="polite">
+    <img class="brand-logo brand-logo--boot" src="../assets/images/logo-assinatura.webp" alt="" width="931" height="140" decoding="async">
+    <span class="sr-only">Carregando painel…</span>
+  </div>
+
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Navegação principal"></aside>
+    <div class="scrim" id="scrim" aria-hidden="true"></div>
+
+    <div class="main">
+      <header class="topbar" id="topbar"></header>
+
+      <main class="content" id="content" tabindex="-1">
+        <div class="page-head">
+          <div>
+            <h1 class="page-title">Configurações do site</h1>
+            <p class="page-subtitle">Altere uma vez aqui e o site inteiro passa a usar a nova informação.</p>
+          </div>
+        </div>
+
+        <form id="settingsForm" class="settings-grid" novalidate>
+          <section class="card" aria-labelledby="st-company">
+            <div class="card__head"><h2 class="card__title" id="st-company">Imobiliária</h2></div>
+            <div class="card__body form-grid">
+
+            <div class="form-field span-3">
+              <label for="s-company_name">Nome da imobiliária<span class="req">*</span></label>
+              <input class="input" id="s-company_name" name="company_name" type="text" placeholder="" maxlength="120" required>
+
+            </div>
+
+            <div class="form-field span-3">
+              <label for="s-tagline">Frase curta (slogan)</label>
+              <input class="input" id="s-tagline" name="tagline" type="text" placeholder="Imóveis de alto padrão" maxlength="120">
+
+            </div>
+
+            <div class="form-field span-2">
+              <label for="s-creci">CRECI</label>
+              <input class="input" id="s-creci" name="creci" type="text" placeholder="000000-J" maxlength="40">
+
+            </div>
+
+            <div class="form-field span-4">
+              <label for="s-address">Endereço</label>
+              <input class="input" id="s-address" name="address" type="text" placeholder="Av. …, 000 — Bairro, Cidade — UF" maxlength="255">
+
+            </div>
+              <div class="form-field">
+                <label for="s-about">Texto institucional curto</label>
+                <textarea class="textarea" id="s-about" name="about_short" maxlength="400" rows="3" style="min-height:90px"></textarea>
+                <p class="form-hint">Até 400 caracteres. Aparece no rodapé do site.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" aria-labelledby="st-contact">
+            <div class="card__head"><h2 class="card__title" id="st-contact">Contato</h2></div>
+            <div class="card__body form-grid">
+
+            <div class="form-field span-3">
+              <label for="s-whatsapp">WhatsApp</label>
+              <input class="input" id="s-whatsapp" name="whatsapp" type="tel" placeholder="(11) 99999-9999" inputmode="tel" autocomplete="off">
+
+            </div>
+
+            <div class="form-field span-3">
+              <label for="s-phone">Telefone</label>
+              <input class="input" id="s-phone" name="phone" type="tel" placeholder="(11) 3000-0000" inputmode="tel" autocomplete="off">
+
+            </div>
+
+            <div class="form-field span-3">
+              <label for="s-email">E-mail</label>
+              <input class="input" id="s-email" name="email" type="email" placeholder="contato@suaimobiliaria.com.br" maxlength="190" autocapitalize="none">
+
+            </div>
+              <div class="form-field span-3"></div>
+              <div class="form-field">
+                <label for="s-wamsg">Mensagem inicial do WhatsApp</label>
+                <input class="input" id="s-wamsg" name="whatsapp_message" maxlength="300">
+                <p class="form-hint" id="waPreview"></p>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" aria-labelledby="st-social">
+            <div class="card__head"><h2 class="card__title" id="st-social">Redes sociais</h2></div>
+            <div class="card__body form-grid">
+              <p class="form-hint" style="grid-column:1/-1;margin:0">Deixe em branco para esconder o ícone no site. Use o endereço completo (https://…).</p>
+
+            <div class="form-field span-3">
+              <label for="s-instagram_url">Instagram</label>
+              <input class="input" id="s-instagram_url" name="instagram_url" type="url" placeholder="https://instagram.com/suaimobiliaria" >
+
+            </div>
+
+            <div class="form-field span-3">
+              <label for="s-facebook_url">Facebook</label>
+              <input class="input" id="s-facebook_url" name="facebook_url" type="url" placeholder="https://facebook.com/suaimobiliaria" >
+
+            </div>
+
+            <div class="form-field span-3">
+              <label for="s-youtube_url">YouTube</label>
+              <input class="input" id="s-youtube_url" name="youtube_url" type="url" placeholder="https://youtube.com/@suaimobiliaria" >
+
+            </div>
+
+            <div class="form-field span-3">
+              <label for="s-tiktok_url">TikTok</label>
+              <input class="input" id="s-tiktok_url" name="tiktok_url" type="url" placeholder="https://tiktok.com/@suaimobiliaria" >
+
+            </div>
+
+            <div class="form-field span-3">
+              <label for="s-linkedin_url">LinkedIn</label>
+              <input class="input" id="s-linkedin_url" name="linkedin_url" type="url" placeholder="https://linkedin.com/company/suaimobiliaria" >
+
+            </div>
+            </div>
+            <div class="card__foot">
+              <button class="btn btn--gold" type="submit" id="saveSettings"><svg class="icon" aria-hidden="true"><use href="#i-save"/></svg><span>Salvar configurações</span></button>
+            </div>
+          </section>
+
+          <section class="card" aria-labelledby="st-brand">
+            <div class="card__head"><h2 class="card__title" id="st-brand">Logo e favicon</h2></div>
+            <div class="card__body two-col">
+              <div class="form-field">
+                <span class="form-label">Logo</span>
+                <div class="asset-row">
+                  <div class="asset-preview" id="logoPreview">Nenhum</div>
+                  <div style="display:grid;gap:.5rem">
+                    <label class="btn btn--outline btn--sm" data-upload="logo"><svg class="icon" aria-hidden="true"><use href="#i-upload"/></svg><span>Enviar logo</span>
+                      <input class="sr-only" type="file" id="logoFile" accept="image/png,image/webp,image/jpeg"></label>
+                    <button class="btn btn--ghost btn--sm" type="button" id="logoRemove" hidden><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg><span>Remover</span></button>
+                  </div>
+                </div>
+                <p class="form-hint">PNG com fundo transparente, na horizontal. Salvo automaticamente ao enviar.</p>
+              </div>
+              <div class="form-field">
+                <span class="form-label">Favicon (ícone da aba)</span>
+                <div class="asset-row">
+                  <div class="asset-preview asset-preview--square" id="faviconPreview">Nenhum</div>
+                  <div style="display:grid;gap:.5rem">
+                    <label class="btn btn--outline btn--sm" data-upload="favicon"><svg class="icon" aria-hidden="true"><use href="#i-upload"/></svg><span>Enviar favicon</span>
+                      <input class="sr-only" type="file" id="faviconFile" accept="image/png,image/webp,image/jpeg"></label>
+                    <button class="btn btn--ghost btn--sm" type="button" id="faviconRemove" hidden><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg><span>Remover</span></button>
+                  </div>
+                </div>
+                <p class="form-hint">Imagem quadrada. Recortada e redimensionada automaticamente.</p>
+              </div>
+            </div>
+          </section>
+        </form>
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="js/pages/settings.js"></script>
+</body>
+</html>

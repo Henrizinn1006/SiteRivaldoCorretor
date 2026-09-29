@@ -1,0 +1,13 @@
+Coloque aqui o vídeo do Hero:
+  hero-imovel.mp4   (H.264, obrigatório)
+  hero-imovel.webm  (VP9, opcional — mais leve)
+
+Recomendações:
+- 1920x1080 (ou 1600x900), 10–20 s em loop, SEM áudio
+- Ideal abaixo de 4–6 MB (CRF ~28, bitrate ~2–3 Mbps)
+- Movimento de câmera muito lento, sem cortes bruscos
+- Poster/fallback: troque a URL em index.html (atributo poster) e em css/style.css (.hero__fallback)
+  por assets/images/hero-poster.webp
+
+Enquanto o arquivo não existir, o site usa automaticamente a imagem estática
+com um zoom cinematográfico lento.

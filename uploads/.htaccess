@@ -1,0 +1,33 @@
+# Pasta de uploads: somente imagens podem ser servidas.
+# Mesmo que alguém consiga enviar um script, ele NÃO será executado nem baixado.
+Options -Indexes
+
+# 1) Bloqueia tudo…
+<FilesMatch ".*">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# 2) …e libera apenas extensões de imagem.
+<FilesMatch "\.(jpe?g|png|webp|avif|gif|ico|svg)$">
+    <IfModule mod_authz_core.c>
+        Require all granted
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order deny,allow
+        Allow from all
+    </IfModule>
+</FilesMatch>
+
+# 3) Desliga o interpretador PHP aqui (só em servidores com mod_php).
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php7.c>
+    php_flag engine off
+</IfModule>

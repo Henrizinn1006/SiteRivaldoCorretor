@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#3A2F28">
+  <meta name="referrer" content="same-origin">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Rivaldo">
+  <title>Entrar — Painel Rivaldo</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="auth-page">
+  <main class="auth">
+    <div class="auth__card">
+      <div class="auth__brand">
+        <img class="brand-logo brand-logo--auth" src="../assets/images/logo-assinatura.webp" alt="" width="931" height="140" decoding="async">
+        <h1 class="sr-only">Rivaldo Duarte — Painel administrativo</h1>
+        <p class="auth__subtitle">Painel administrativo</p>
+      </div>
+
+      <div class="notice" id="loginNotice" role="status" hidden></div>
+
+      <form class="auth__form" id="loginForm" novalidate>
+        <div class="form-field">
+          <label for="login">Usuário ou e-mail</label>
+          <div class="input-wrap">
+            <svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>
+            <input class="input" id="login" name="login" type="text"
+                   autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false"
+                   maxlength="190" required placeholder="Ex.: RivaldoAdmin">
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="password">Senha</label>
+          <div class="input-wrap">
+            <svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>
+            <input class="input input--action" id="password" name="password" type="password"
+                   autocomplete="current-password" maxlength="200" required placeholder="Sua senha">
+            <button class="input-action" type="button" id="togglePassword" aria-label="Mostrar senha" aria-pressed="false">
+              <svg class="icon" aria-hidden="true"><use href="#i-eye"/></svg>
+            </button>
+          </div>
+          <p class="auth__caps" id="capsWarning" hidden>Caps Lock está ativado.</p>
+        </div>
+
+        <button class="btn btn--gold btn--block" type="submit" id="loginSubmit">
+          <span>Entrar</span>
+        </button>
+      </form>
+
+      <button class="btn btn--ghost btn--block pwa-install-login" type="button" id="installApp" hidden>Instalar aplicativo</button>
+      <p class="auth__help">Esqueceu sua senha? Fale com o suporte técnico do site.</p>
+    </div>
+  </main>
+
+  <script type="module" src="js/pages/login.js"></script>
+</body>
+</html>

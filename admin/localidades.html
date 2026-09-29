@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="same-origin">
+  <meta name="theme-color" content="#3A2F28">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Rivaldo">
+  <title>Bairros / localidades — Painel Rivaldo</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="is-booting">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+
+  <!-- Exibida enquanto a sessão é confirmada no servidor -->
+  <div class="boot" aria-live="polite">
+    <img class="brand-logo brand-logo--boot" src="../assets/images/logo-assinatura.webp" alt="" width="931" height="140" decoding="async">
+    <span class="sr-only">Carregando painel…</span>
+  </div>
+
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Navegação principal"></aside>
+    <div class="scrim" id="scrim" aria-hidden="true"></div>
+
+    <div class="main">
+      <header class="topbar" id="topbar"></header>
+
+      <main class="content" id="content" tabindex="-1">
+        <div class="page-head">
+          <div>
+            <h1 class="page-title">Bairros / localidades</h1>
+            <p class="page-subtitle">Cidades e bairros usados no cadastro dos imóveis e nos filtros do site.</p>
+          </div>
+          <button class="btn btn--gold" type="button" id="newCity"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg><span>Nova cidade</span></button>
+        </div>
+
+        <div class="locations">
+          <section class="card" aria-labelledby="citiesTitle">
+            <div class="card__head"><h2 class="card__title" id="citiesTitle">Cidades</h2></div>
+            <div id="cities" aria-busy="true"><div class="card__body"><span class="skeleton" style="height:18px;width:60%"></span></div></div>
+          </section>
+          <section class="card" aria-labelledby="hoodsTitle">
+            <div class="card__head">
+              <h2 class="card__title" id="hoodsTitle">Bairros</h2>
+              <button class="btn btn--outline btn--sm" type="button" id="newHood" disabled><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg><span>Novo bairro</span></button>
+            </div>
+            <div id="neighborhoods" aria-busy="true"></div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="js/pages/locations.js"></script>
+</body>
+</html>

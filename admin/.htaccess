@@ -1,0 +1,20 @@
+# Painel administrativo — cabeçalhos do PWA e de segurança.
+# (Todas as diretivas dentro de <IfModule> para não quebrar em hospedagem compartilhada.)
+
+<IfModule mod_headers.c>
+    # Painel nunca aparece dentro de iframe de outro site
+    Header always set X-Frame-Options "DENY"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "same-origin"
+    Header always set X-Robots-Tag "noindex, nofollow"
+
+    # O navegador sempre confere se há versão nova do Service Worker e das páginas
+    <FilesMatch "(service-worker\.js|manifest\.json|\.html)$">
+        Header set Cache-Control "no-cache"
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_mime.c>
+    AddType application/manifest+json .webmanifest
+    AddType text/javascript .js
+</IfModule>

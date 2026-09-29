@@ -1,0 +1,27 @@
+# Credenciais — NUNCA versionar
+config/database.php
+
+# Uploads do cliente
+uploads/properties/*
+!uploads/properties/.gitkeep
+
+# Sistema / editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+_to_delete/
+
+# Segredos do servidor
+.env
+.env.*
+config/database.local.php
+config/secrets.php
+credentials.*
+secrets/
+*.key
+*.pem
+*.p8
+*.p12
+*.pfx

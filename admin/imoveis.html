@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="same-origin">
+  <meta name="theme-color" content="#3A2F28">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Rivaldo">
+  <title>Imóveis — Painel Rivaldo</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="is-booting">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+
+  <!-- Exibida enquanto a sessão é confirmada no servidor -->
+  <div class="boot" aria-live="polite">
+    <img class="brand-logo brand-logo--boot" src="../assets/images/logo-assinatura.webp" alt="" width="931" height="140" decoding="async">
+    <span class="sr-only">Carregando painel…</span>
+  </div>
+
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Navegação principal"></aside>
+    <div class="scrim" id="scrim" aria-hidden="true"></div>
+
+    <div class="main">
+      <header class="topbar" id="topbar"></header>
+
+      <main class="content" id="content" tabindex="-1">
+        <div class="page-head">
+          <div>
+            <h1 class="page-title" id="pageTitle">Imóveis</h1>
+            <p class="page-subtitle" id="pageSubtitle">Cadastre, edite, publique e acompanhe todos os imóveis do site.</p>
+          </div>
+          <a class="btn btn--gold" href="imovel-form.html">
+            <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
+            <span>Adicionar imóvel</span>
+          </a>
+        </div>
+
+        <section class="card" aria-label="Lista de imóveis">
+          <div class="toolbar" id="toolbar" role="search" aria-label="Filtrar imóveis">
+            <div class="search-field">
+              <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+              <label class="sr-only" for="fQ">Buscar por código, título, cidade ou bairro</label>
+              <input class="input" id="fQ" type="search" placeholder="Buscar por código, título, cidade ou bairro" autocomplete="off">
+            </div>
+            <button class="btn btn--outline btn--sm filters-toggle" type="button" id="filtersToggle" aria-expanded="false" aria-controls="toolbar">
+              <svg class="icon" aria-hidden="true"><use href="#i-filter"/></svg><span>Filtros</span>
+            </button>
+            <label class="sr-only" for="fStatus">Status</label>
+            <select class="select" id="fStatus"></select>
+            <label class="sr-only" for="fTransaction">Negociação</label>
+            <select class="select" id="fTransaction"></select>
+            <label class="sr-only" for="fType">Tipo</label>
+            <select class="select" id="fType"></select>
+            <label class="sr-only" for="fCity">Cidade</label>
+            <select class="select" id="fCity"></select>
+            <label class="sr-only" for="fNeighborhood">Bairro</label>
+            <select class="select" id="fNeighborhood"></select>
+            <label class="sr-only" for="fFeatured">Destaque</label>
+            <select class="select" id="fFeatured"></select>
+          </div>
+          <div class="toolbar__foot">
+            <p id="summary" aria-live="polite"></p>
+            <div style="display:flex;gap:.5rem;align-items:center">
+              <button class="btn btn--ghost btn--sm" type="button" id="clearFilters" hidden><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg><span>Limpar filtros</span></button>
+              <label class="sr-only" for="fSort">Ordenar por</label>
+              <select class="select" id="fSort" style="min-height:36px;font-size:.85rem;width:auto">
+                <option value="recent">Mais recentes</option>
+                <option value="updated">Atualizados recentemente</option>
+                <option value="price_desc">Maior preço</option>
+                <option value="price_asc">Menor preço</option>
+                <option value="title">Título (A–Z)</option>
+              </select>
+            </div>
+          </div>
+          <div id="list" aria-busy="true"></div>
+          <div class="pagination" id="pagination"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="js/pages/properties.js"></script>
+</body>
+</html>

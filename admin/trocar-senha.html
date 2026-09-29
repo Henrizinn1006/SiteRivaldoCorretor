@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#3A2F28">
+  <meta name="referrer" content="same-origin">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Rivaldo">
+  <title>Criar senha — Painel Rivaldo</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="auth-page is-booting">
+  <main class="auth">
+    <div class="auth__card">
+      <div class="auth__brand">
+        <img class="brand-logo brand-logo--auth" src="../assets/images/logo-assinatura.webp" alt="" width="931" height="140" decoding="async">
+        <h1 class="auth__heading">Primeiro acesso</h1>
+        <p class="auth__subtitle">Crie sua senha pessoal</p>
+      </div>
+
+      <div class="notice notice--info" role="status">
+        <span>Olá, <b data-user-name>…</b>. Troque a senha temporária por uma senha só sua.
+        Depois disso, uma nova troca só pode ser feita com a liberação do provedor (Vortexis).</span>
+      </div>
+
+      <div class="notice" id="notice" role="alert" hidden></div>
+
+      <form class="auth__form" id="passwordForm" novalidate>
+        <input type="text" name="username" autocomplete="username" hidden data-user-login>
+
+        <div class="form-field">
+          <label for="current">Senha temporária</label>
+          <div class="input-wrap">
+            <svg class="icon" aria-hidden="true"><use href="#i-key"/></svg>
+            <input class="input" id="current" name="current_password" type="password"
+                   autocomplete="current-password" maxlength="200" required placeholder="A senha que você recebeu">
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="new">Nova senha</label>
+          <div class="input-wrap">
+            <svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>
+            <input class="input" id="new" name="password" type="password"
+                   autocomplete="new-password" maxlength="200" required placeholder="Mínimo de 10 caracteres">
+          </div>
+          <p class="form-hint">Mínimo de 10 caracteres, com letras e números.</p>
+        </div>
+
+        <div class="form-field">
+          <label for="confirm">Confirmar nova senha</label>
+          <div class="input-wrap">
+            <svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>
+            <input class="input" id="confirm" name="password_confirmation" type="password"
+                   autocomplete="new-password" maxlength="200" required placeholder="Repita a nova senha">
+          </div>
+        </div>
+
+        <button class="btn btn--gold btn--block" type="submit" id="submitBtn">
+          <span>Salvar senha e entrar</span>
+        </button>
+      </form>
+
+      <p class="auth__help"><button class="link-btn" type="button" data-logout>Sair e entrar com outro usuário</button></p>
+    </div>
+  </main>
+
+  <script type="module" src="js/pages/first-access.js"></script>
+</body>
+</html>
